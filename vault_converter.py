@@ -40,7 +40,7 @@ class Converter():
         path_to_vault_file = "/path/to/myVault/folder/subFolder/myFile.txt"
         path_within_vault = path_to_vault_file[path_offset:] = "myVault/folder/subFolder/myFile.txt"
         """
-        self.path_offset = len(self.path_to_vault) - self.vault_name
+        self.path_offset = len(self.path_to_vault) - len(self.vault_name)
         self.vault_files = self._generate_vault_files_list()
 
     def _replace_md_to_html(self, md_body):
@@ -168,9 +168,9 @@ class Converter():
         print(f"name found: {name}")
         with open(md_file_path, "r") as fp:
             md_data = fp.read()
+        md_data = self._replace_obsidian_internal_links(md_data)
         md_data = md_data.replace('\n', '<br>\n')
         md_data = self._replace_md_to_html(md_data)
-        md_data = self._replace_obsidian_internal_links(md_data)
         with open(template_path, 'r') as fp:
             template = fp.read()
         return template.replace('{PAGE_TITLE}', name).replace('{PAGE_HEADER}', name).replace('{MAIN_BODY}', md_data)
