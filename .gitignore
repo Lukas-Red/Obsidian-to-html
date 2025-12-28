@@ -1,3 +1,11 @@
+# custom ignores
+index_maker.py
+index_template.html
+40x.html
+50x.html
+favicon.png
+old_main.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
